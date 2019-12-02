@@ -5,7 +5,7 @@ Gym
 1.Login Screen
 
 <div align="center">
-    <img src="https://user-images.githubusercontent.com/17780617/69951642-a1bc6480-151b-11ea-9264-79ab7efc71e6.png"
+    <img src="https://user-images.githubusercontent.com/17780617/69953091-87d05100-151e-11ea-8081-d06ccd56eb3e.gif"
          </img> 
 </div>
 
