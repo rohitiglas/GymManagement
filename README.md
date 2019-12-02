@@ -9,3 +9,12 @@ Gym
          </img> 
 </div>
 
+2. Dashboard
+
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/17780617/69951647-a4b75500-151b-11ea-9bc2-29d48151c1ff.png"
+         </img> 
+</div>
+
+
