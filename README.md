@@ -1,5 +1,5 @@
 # GymManagement
 Gym
 <div align="center">
-    <img src="C:\Users\rohit.bansal\Desktop" width="400px"</img> 
+    <img src="/screenshots/Screenshot_1575282008.png" width="400px"</img> 
 </div>
