@@ -27,5 +27,15 @@ Gym
 </div>
 
 
+4.ChangePassword Screen
+
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/17780617/69951656-aaad3600-151b-11ea-95e4-42365974bfc0.png"
+         </img> 
+</div>
+
+
+
+
 
 
