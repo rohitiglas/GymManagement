@@ -1,10 +1,16 @@
 import { all } from 'redux-saga/effects';
-import { watchLogin,watchLoginApiCall,
+import {
+    watchChangePasswordApiCall,
+    watchUserPunchApiCall,
+    watchGetUserApiCall, watchLogin,watchLoginApiCall,
     watchFetchUserInfo,
     watchFetchStoreData,watchAllMealData,watchMealDetails,
     watchFetchStoreInfoData,watchFetchProductList} from '../sagas/loginSagas';
 function* rootSaga() {
     yield all([
+        watchChangePasswordApiCall(),
+        watchUserPunchApiCall(),
+        watchGetUserApiCall(),
         watchLoginApiCall(),
         watchLogin(),watchAllMealData(),
         watchMealDetails(),

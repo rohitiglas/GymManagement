@@ -1,4 +1,5 @@
 import { put, call, fork, takeLatest } from 'redux-saga/effects';
+import {Alert} from 'react-native';
 import * as types from '../actions/types';
 import * as loginApis from '.././service/loginApis';
 import {
@@ -7,35 +8,118 @@ import {
     setStoreInfoData,
     setProductList,
     setAllMealData,
-    setMealDetails
+    setMealDetails, setUserPunch, setSelectedDrawerRow
 } from '../actions/loginActions';
 import { setToken } from '.././service/api';
+import {saveToken} from "../utils/storage";
 
 export function* login(action) {
+    // try {
+    //     const data = yield call(loginApis.login, action.params)
+    //     action.onSuccess(data.data)
+    //     setToken(data.data.token || '');
+    //     yield put(setUserInfo(data.data.user))
+    // } catch (error) {
+    //     action.onError(error)
+    // }
+}
+
+export function* loginApiCall(action) {
+
     try {
-        const data = yield call(loginApis.login, action.params)
-        action.onSuccess(data.data)
-        setToken(data.data.token || '');
-        yield put(setUserInfo(data.data.user))
+        const data = yield call(loginApis.loginApiCall, action.params);
+        console.log("JSSSSSSSSSSSSSSSSSSSS",data.data)
+        if(data.data.error)
+        {
+            Alert.alert('',data.data.message)
+        }
+        else
+        {
+            Alert.alert('',data.data.message)
+            setToken(data.data.token || '');
+        }
+        action.onSuccess(data.data);
+
+
+
+
     } catch (error) {
+
         action.onError(error)
     }
 }
 
-export function* loginApiCall(action) {
-    console.log("SLSLSLLSLSLSLLSLSLLSLSbsbbsbs",action)
+export function* getUserApiCall(action) {
+
+
+
     try {
-        const data = yield call(loginApis.loginApiCall, action.params)
-        console.log("SLSLSLLSLSLSLLSLSLLSLSRESPONSE",data)
+        const data = yield call(loginApis.getUserApiCall, action.params);
+
+
+        yield put(setUserInfo(data.data.data))
+        action.onSuccess(data.data);
 
     } catch (error) {
-        console.log("SLSLSLLSLSLSLLSLSLLSLSERROR",error)
+
+        action.onError(error)
+    }
+}
+
+export function* userPunchApiCall(action) {
+    try {
+        const data = yield call(loginApis.userPunchApiCall, action.params)
+        yield put(setUserPunch(data.data.data))
+        action.onSuccess(data.data);
+
+
+    } catch (error) {
+
+        action.onError(error)
+    }
+}
+
+export function* changePasswordApiCall(action) {
+    try {
+        const data = yield call(loginApis.changePasswordApiCall, action.params);
+        if(data.data.error)
+        {
+            Alert.alert('',data.data.message)
+        }
+        else
+        {
+
+            yield  put(setSelectedDrawerRow("Home"))
+        }
+        action.onSuccess(data.data);
+        // yield put(setUserInfo(data.data))
+
+
+
+    } catch (error) {
+        console.log("skkkkkkkBBABAAAAAAAAAAA",error)
+
         action.onError(error)
     }
 }
 
 export function* watchLoginApiCall() {
     yield takeLatest(types.LOGIN_API_CALL, loginApiCall)
+}
+
+export function* watchGetUserApiCall() {
+
+    yield takeLatest(types.GET_USER_API_CALL, getUserApiCall)
+}
+
+export function* watchUserPunchApiCall() {
+
+    yield takeLatest(types.USER_PUNCH_API_CALL, userPunchApiCall)
+}
+
+export function* watchChangePasswordApiCall() {
+
+    yield takeLatest(types.CHANGE_PASSWORD_API_CALL, changePasswordApiCall)
 }
 
 

@@ -5,9 +5,27 @@ let cartQuantity=0;
 
 const loginReducer = (state = appState.login, action) => {
 
+
     switch (action.type) {
         case types.SET_USER_INFO:
-            return { ...state, ...{ userInfo: action.data } }
+
+
+
+            let myAttendance={}
+
+            if( action.data && action.data.attendence)
+            {
+                myAttendance=action.data.attendence
+            }
+
+            return { ...state,  userInfo: action.data.user,userPunch: myAttendance }
+
+            case types.SET_SELECTED_DRAWER_ROW:
+            return { ...state, ...{ selectedDrawerRow: action.data } }
+
+
+        case types.SET_USER_PUNCH:
+            return {...state,userPunch:action.data}
 
         case types.SET_ALL_MEAL_DATA:
             let myArrayData=action.data.categories

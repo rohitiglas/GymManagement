@@ -11,7 +11,7 @@ import {nameValidator,emailValidator,passwordValidator} from "../../utils/utils"
 import {theme} from "../../utils/theme";
 import CustomHeader from "../../components/customHeader";
 import {bindActionCreators} from "redux";
-import {fetchMealDetails, login, loginApiCall, setAddItemToCart, setRemoveItemToCart} from "../../actions/loginActions";
+
 import {connect} from "react-redux";
 
 

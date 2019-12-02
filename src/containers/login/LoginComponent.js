@@ -3,7 +3,7 @@ import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import Button from "../../components/Button";
 import Toast from "../../components/Toast";
-import {ScrollView, StyleSheet} from "react-native";
+import {ScrollView, StyleSheet,Alert} from "react-native";
 import React, {Component, memo} from "react";
 import {theme} from "../../utils/theme";
 
@@ -11,6 +11,8 @@ import {connect} from "react-redux";
 import {emailValidator, passwordValidator} from "../../utils/utils";
 import {bindActionCreators} from "redux";
 import * as loginActions from '../../actions/loginActions';
+import {saveToken} from "../../utils/storage";
+import { NavigationActions, StackActions } from 'react-navigation';
 
 
 class LoginComponent extends Component{
@@ -22,16 +24,41 @@ class LoginComponent extends Component{
             email:'',password:'',error:''
         }
     }
+
+
+
+
     onSuccess = (data) => {
-        console.log("SUcess----------------------",data)
+        this.setState({ loading: false });
+       if(data.data)
+       {
+           if (data.data.token && data.data.token.length > 0) {
+               saveToken(data.data.token).then((isSuccess) => {
+                   if (isSuccess) {
+                       const { navigation } = this.props;
+                       const resetAction = StackActions.reset({
+                           index: 0,
+                           actions: [
+                               NavigationActions.navigate({ routeName: 'Home' }),
+                           ],
+                       });
+                       navigation.dispatch(resetAction);
+                   }
+               });
+           }
+       }
 
     }
+
     onError = (error) => {
-        console.log("Error----------------------",error)
+        this.setState({loading:false})
+        Alert.alert('',data.message);
+
 
 
     }
     _onSignUpPressed =  () => {
+        this.setState({loading:true})
 
         this.props.actions.login.login({email:this.state.email,password:this.state.password},this.onSuccess,this.onError)
 
@@ -113,15 +140,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
 
+
     return {}
 }
 const mapDispatchToProps = (dispatch) => {
-    console.log("ROhittnnnfnfnffffffffffffff","-----------Called")
-
-
-
-
-
     return {
         actions: {
             login: bindActionCreators(loginActions, dispatch)

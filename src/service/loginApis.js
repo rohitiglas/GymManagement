@@ -6,6 +6,15 @@ export const login = (params) => {
 export const loginApiCall = (params) => {
     return api.post('/login', params);
 }
+export const getUserApiCall = (params) => {
+    return api.post('/getUser', params);
+}
+export const userPunchApiCall = (params) => {
+    return api.post('/makepunch', params);
+}
+export const changePasswordApiCall = (params) => {
+    return api.post('/changepassword', params);
+}
 export const fetchStoreData = () => {
     // return api.get('/?i=onions,garlic&q=omelet&p=3');
     return api.get('/get-all-stores');
