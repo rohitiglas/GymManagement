@@ -1,5 +1,5 @@
 import  React,{PureComponent} from 'react';
-import {View, Text, Alert, Image,TouchableOpacity,ActivityIndicator} from 'react-native';
+import {View, Text, Alert, Image,TouchableOpacity,ActivityIndicator,StatusBar} from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph ,Appbar} from 'react-native-paper';
 import Header from "../../components/Header";
 import Background from "../../components/Background";
@@ -29,6 +29,7 @@ class Home extends PureComponent{
             isLoading:true,
             attendance:{},
             userInfo:{},
+            drawerRow:'Home',
 
             isAttendanceMark:false
         }
@@ -66,10 +67,12 @@ class Home extends PureComponent{
 
 
 
+
      _goBack = () => this.props.navigation.openDrawer()
 
     render()
     {
+        console.log("ksss--------------------",this.props.selectedRow)
 
 
 
@@ -81,7 +84,7 @@ class Home extends PureComponent{
                     loading={this.state.isLoading} />
 
 
-                <View style={{height:60,width:'100%',flexDirection:'row',alignItems:'center',backgroundColor:'#864eff'}}>
+                <View style={{height:60,width:'100%',flexDirection:'row',alignItems:'center',backgroundColor:'#FF5722'}}>
                     <TouchableOpacity onPress={this._goBack}>
                         <Image source={require('../../images/hamburger.png')}
                                style={{marginLeft:15,marginRight:20,width:20,height:20,tintColor:'#FFF'}}/>
@@ -90,7 +93,7 @@ class Home extends PureComponent{
                     <Text  style={{fontSize:20,color:'#FFF',fontWeight:'bold'}}>{this.props.selectedRow?this.props.selectedRow:'Home'}</Text>
                 </View>
 
-                {this.props.selectedRow=='Home' &&
+                {this.props.selectedRow==='Home' &&
                 <View style={{margin:20}}>
                     <Card style={{width:'100%'}}>
 
@@ -102,15 +105,15 @@ class Home extends PureComponent{
 
                         <Card onPress={this.onPunchClick}
                               style={{borderRadius:20,marginTop:20,alignItems:'center',
-                                  alignSelf:'center',width:'70%',backgroundColor:this.props.userPunch.checkInTime?'#2b88ff':'#fd2906'}}>
+                                  alignSelf:'center',width:'70%',backgroundColor:this.props.userPunch?'#2b88ff':'#fd2906'}}>
                             <Text style={{textAlign:'center',marginTop:15,color:'#FFFFFF',fontSize:12,}}>{ShowCurrentDate()}</Text>
 
-                            <Text style={{marginTop:15,color:'#FFFFFF',fontSize:16,}}>IN TIME :  {getTimeFromDate(this.props.userPunch.checkInTime)}</Text>
+                            <Text style={{marginTop:15,color:'#FFFFFF',fontSize:16,}}>IN TIME :  {this.props.userPunch?getTimeFromDate(this.props.userPunch.checkInTime):''}</Text>
 
 
 
 
-                            <Text style={{marginBottom:30,marginTop:5,color:'#FFFFFF',fontSize:16,}}>OUT TIME :  {this.props.userPunch.checkOutTime>0?getTimeFromDate(this.props.userPunch.checkOutTime):''}</Text>
+                            <Text style={{marginBottom:30,marginTop:5,color:'#FFFFFF',fontSize:16,}}>OUT TIME :  {this.props.userPunch?(this.props.userPunch.checkOutTime>0?getTimeFromDate(this.props.userPunch.checkOutTime):''):''}</Text>
 
 
 
@@ -129,7 +132,7 @@ class Home extends PureComponent{
                     </Card>
                 </View>
                 }
-                {this.props.selectedRow=='MyTask' &&
+                {this.props.selectedRow==='MyTask' &&
                 <MyTask/>
                 }
 
@@ -152,6 +155,8 @@ class Home extends PureComponent{
 
 
 const mapStateToProps = (state) => {
+    console.log("ksss--------------------Props",state.login)
+
 
 
 

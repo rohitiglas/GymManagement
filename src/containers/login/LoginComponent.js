@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
         color: theme.colors.secondary
     },
     button: {
+        backgroundColor:'#FF5722',
         marginTop: 24
     },
     row: {

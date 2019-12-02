@@ -107,7 +107,8 @@ const styles = StyleSheet.create({
         color: theme.colors.secondary
     },
     button: {
-        marginTop: 24
+        marginTop: 24,
+        backgroundColor:'#FF5722'
     },
     row: {
         flexDirection: "row",

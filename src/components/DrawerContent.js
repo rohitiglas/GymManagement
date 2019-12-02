@@ -8,8 +8,11 @@ import * as loginActions from "../actions/loginActions";
 import {connect} from "react-redux";
 import {setAddItemToCart} from "../actions/loginActions";
 import {setRemoveItemToCart,setSelectedDrawerRow} from "../actions/loginActions";
+import Home from "../containers/dashboard/Home";
+let homeObj=null;
 
  class DrawerContent extends Component {
+
 
     logoutPress = async () => {
         saveToken("").then((isSuccess) => {
@@ -29,8 +32,11 @@ import {setRemoveItemToCart,setSelectedDrawerRow} from "../actions/loginActions"
     }
 
     rowPress =(item) => {
-        this.props.navigation.closeDrawer()
-       this.props.drawerSelectedRow(item)
+        this.props.navigation.closeDrawer();
+        // homeObj.rowClicked(item);
+
+       this.props.drawerSelectedRow(item);
+
 
     }
 
