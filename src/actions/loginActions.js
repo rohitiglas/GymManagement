@@ -3,7 +3,7 @@ import {
     LOGIN_API_CALL,
     SET_USER_INFO,
     GET_USER_API_CALL,
-    USER_PUNCH_API_CALL, CHANGE_PASSWORD_API_CALL, SET_USER_PUNCH
+    USER_PUNCH_API_CALL, CHANGE_PASSWORD_API_CALL, SET_USER_PUNCH, SET_LOGIN_TOKEN
 } from './types';
 export const login = (params, onSuccess, onError) => ({
     type: LOGIN_API_CALL,
@@ -40,6 +40,11 @@ export const setUserInfo = (data) => ({
 
 export const setUserPunch = (data) => ({
     type: SET_USER_PUNCH,
+    data,
+})
+
+export const setLoginToken = (data) => ({
+    type: SET_LOGIN_TOKEN,
     data,
 })
 

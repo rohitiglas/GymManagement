@@ -18,6 +18,7 @@ import {getTimeFromDate, ShowCurrentDate} from "../../components/GetCurrentDate"
 import {setUserInfo} from "../../actions/loginActions";
 import {setUserPunch} from "../../actions/loginActions";
 import Loader from "../../components/Loader";
+let myContext=null;
 
 
 class Home extends PureComponent{
@@ -33,6 +34,7 @@ class Home extends PureComponent{
 
             isAttendanceMark:false
         }
+
     }
 
     async componentDidMount()
@@ -41,11 +43,15 @@ class Home extends PureComponent{
 
 
 
-        this.props.actions.userProfile.userProfile({},this.onSuccess,this.onError);
+
+        this.props.actions.userProfile.userProfile({token:this.props.token},this.onSuccess,this.onError);
 
         this.setState({token:token})
 
     }
+
+
+
 
 
 
@@ -72,7 +78,8 @@ class Home extends PureComponent{
 
     render()
     {
-        console.log("ksss--------------------",this.props.selectedRow)
+        myContext=this;
+        let isPunch=this.props.userPunch && Object.entries(this.props.userPunch).length === 0 && this.props.userPunch.constructor === Object;
 
 
 
@@ -105,15 +112,22 @@ class Home extends PureComponent{
 
                         <Card onPress={this.onPunchClick}
                               style={{borderRadius:20,marginTop:20,alignItems:'center',
-                                  alignSelf:'center',width:'70%',backgroundColor:this.props.userPunch?'#2b88ff':'#fd2906'}}>
+                                  alignSelf:'center',width:'70%',backgroundColor:!isPunch?'#2b88ff':'#fd2906'}}>
                             <Text style={{textAlign:'center',marginTop:15,color:'#FFFFFF',fontSize:12,}}>{ShowCurrentDate()}</Text>
 
-                            <Text style={{marginTop:15,color:'#FFFFFF',fontSize:16,}}>IN TIME :  {this.props.userPunch?getTimeFromDate(this.props.userPunch.checkInTime):''}</Text>
+                            {isPunch &&
+                            <Text style={{textAlign:'center',marginTop:25,marginBottom:35,color:'#FFFFFF',fontSize:20,}}>No Time</Text>
+                            }
+
+                            {!isPunch &&
+                            <View>
+                                <Text style={{marginTop:15,color:'#FFFFFF',fontSize:16,}}>IN TIME :  {this.props.userPunch?getTimeFromDate(this.props.userPunch.checkInTime):''}</Text>
+                                <Text style={{marginBottom:30,marginTop:5,color:'#FFFFFF',fontSize:16,}}>OUT TIME :  {this.props.userPunch?(this.props.userPunch.checkOutTime>0?getTimeFromDate(this.props.userPunch.checkOutTime):''):''}</Text>
+                            </View>
+                            }
 
 
 
-
-                            <Text style={{marginBottom:30,marginTop:5,color:'#FFFFFF',fontSize:16,}}>OUT TIME :  {this.props.userPunch?(this.props.userPunch.checkOutTime>0?getTimeFromDate(this.props.userPunch.checkOutTime):''):''}</Text>
 
 
 

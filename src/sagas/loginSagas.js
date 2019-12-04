@@ -5,7 +5,7 @@ import * as loginApis from '.././service/loginApis';
 import {
 
     setUserInfo,
-    setUserPunch, setSelectedDrawerRow
+    setUserPunch, setSelectedDrawerRow, setLoginToken
 } from '../actions/loginActions';
 import { setToken } from '.././service/api';
 
@@ -17,14 +17,16 @@ export function* loginApiCall(action) {
     try {
         const data = yield call(loginApis.loginApiCall, action.params);
 
+
+
         if(data.data.error)
         {
             Alert.alert('',data.data.message)
         }
         else
         {
-            Alert.alert('',data.data.message)
-            setToken(data.data.token || '');
+            setToken(data.data.data.token || '');
+            yield put(setLoginToken(data.data.data.token || ''))
         }
         action.onSuccess(data.data);
 
@@ -54,11 +56,13 @@ export function* getUserApiCall(action) {
 export function* userPunchApiCall(action) {
     try {
         const data = yield call(loginApis.userPunchApiCall, action.params)
+
         yield put(setUserPunch(data.data.data))
         action.onSuccess(data.data);
 
 
     } catch (error) {
+
 
         action.onError(error)
     }
@@ -73,9 +77,11 @@ export function* changePasswordApiCall(action) {
         }
         else
         {
-
+            Alert.alert('',data.data.message)
             yield  put(setSelectedDrawerRow("Home"))
+
         }
+
         action.onSuccess(data.data);
         // yield put(setUserInfo(data.data))
 

@@ -25,7 +25,7 @@ let homeObj=null;
                     ],
                 });
                 navigation.dispatch(resetAction);
-                this.props.drawerSelectedRow("")
+                this.props.drawerSelectedRow("Home")
             }
         });
 

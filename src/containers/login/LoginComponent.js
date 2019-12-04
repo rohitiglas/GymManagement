@@ -13,6 +13,7 @@ import {bindActionCreators} from "redux";
 import * as loginActions from '../../actions/loginActions';
 import {saveToken} from "../../utils/storage";
 import { NavigationActions, StackActions } from 'react-navigation';
+import Loader from "../../components/Loader";
 
 
 class LoginComponent extends Component{
@@ -21,7 +22,7 @@ class LoginComponent extends Component{
         super();
         this.state={
             loading:false,
-            email:'',password:'',error:''
+            email:'',password:'',emailError:'',passwordError:''
         }
     }
 
@@ -58,7 +59,20 @@ class LoginComponent extends Component{
 
     }
     _onSignUpPressed =  () => {
-        this.setState({loading:true})
+        console.log("skkkkk---------------------------","Called")
+        const emailError = emailValidator(this.state.email);
+        console.log("KSSSS-------------",emailError)
+        const passwordError = passwordValidator(this.state.password);
+
+
+
+        if (emailError || passwordError) {
+
+            this.setState({ ...this.state.email, emailError: emailError });
+            this.setState({ ...this.state.password, passwordError: passwordError });
+            return;
+        }
+        this.setState({loading:true,emailError:'',passwordError:''})
 
         this.props.actions.login.login({email:this.state.email,password:this.state.password},this.onSuccess,this.onError)
 
@@ -78,6 +92,8 @@ class LoginComponent extends Component{
 
                     <Header>Login</Header>
 
+                    <Loader loading={this.state.loading} />
+
 
 
 
@@ -86,6 +102,8 @@ class LoginComponent extends Component{
                         returnKeyType="next"
                         value={this.state.email}
                         onChangeText={text => this.setState({ email: text, error: "" })}
+                        error={!!this.state.emailError}
+                        errorText={this.state.emailError}
                         autoCapitalize="none"
                         autoCompleteType="email"
                         textContentType="emailAddress"
@@ -96,13 +114,14 @@ class LoginComponent extends Component{
                         label="Password"
                         returnKeyType="done"
                         value={this.state.password}
+                        error={this.state.passwordError}
+                        errorText={this.state.passwordError}
                         onChangeText={text => this.setState({ password: text, error: "" })}
                         secureTextEntry
                         autoCapitalize="none"
                     />
 
                     <Button
-                        loading={this.state.loading}
                         mode="contained"
                         onPress={this._onSignUpPressed}
                         style={styles.button}

@@ -30,12 +30,23 @@ class ChangePassword extends Component{
 
     onSuccess = (data) => {
         this.setState({ loading: false });
+        // Alert.alert('',data.message);
+        // this.props.drawerSelectedRow("Home")
+
+        // const { navigation } = this.props;
+        // const resetAction = StackActions.reset({
+        //     index: 0,
+        //     actions: [
+        //         NavigationActions.navigate({ routeName: 'LoginComponent' }),
+        //     ],
+        // });
+        // navigation.dispatch(resetAction);
 
     }
 
     onError = (error) => {
         this.setState({loading:false})
-        Alert.alert('',data.message);
+        Alert.alert('',"Error occurred");
 
 
 

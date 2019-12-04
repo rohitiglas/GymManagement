@@ -6,6 +6,11 @@ const loginReducer = (state = appState.login, action) => {
 
 
     switch (action.type) {
+
+        case types.SET_LOGIN_TOKEN:
+            return { ...state,
+                token: action.data}
+
         case types.SET_USER_INFO:
 
 
@@ -19,10 +24,10 @@ const loginReducer = (state = appState.login, action) => {
 
             return { ...state,
                 userInfo: action.data.user,
-                userPunch: myAttendance }
+                userPunch: myAttendance,selectedDrawerRow:"Home" }
 
             case types.SET_SELECTED_DRAWER_ROW:
-            return { ...state, ...{ selectedDrawerRow: action.data } }
+            return { ...state, ...{ selectedDrawerRow: action.data, } }
 
 
         case types.SET_USER_PUNCH:
