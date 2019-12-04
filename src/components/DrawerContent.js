@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {NavigationActions, StackActions} from 'react-navigation';
-import { Text, View, StyleSheet, ImageBackground,Image,TouchableOpacity } from 'react-native'
-import { white } from 'ansi-colors';
+import { Text, View, StyleSheet, ImageBackground,Image,TouchableOpacity,StatusBar } from 'react-native'
+
 import {saveToken} from "../utils/storage";
-import {bindActionCreators} from "redux";
-import * as loginActions from "../actions/loginActions";
+
 import {connect} from "react-redux";
-import {setAddItemToCart} from "../actions/loginActions";
-import {setRemoveItemToCart,setSelectedDrawerRow} from "../actions/loginActions";
+
+import {setSelectedDrawerRow} from "../actions/loginActions";
 import Home from "../containers/dashboard/Home";
-let homeObj=null;
+
 
  class DrawerContent extends Component {
 
@@ -33,9 +32,7 @@ let homeObj=null;
 
     rowPress =(item) => {
         this.props.navigation.closeDrawer();
-        // homeObj.rowClicked(item);
-
-       this.props.drawerSelectedRow(item);
+        this.props.drawerSelectedRow(item);
 
 
     }
@@ -43,6 +40,7 @@ let homeObj=null;
     render() {
         return (
             <View style={styles.container}>
+
                 <View style={styles.headerContainer}>
                     <ImageBackground source={require('../images/header.jpg')} style={{flex: 1,  justifyContent: 'center'}} >
                         <Text style={styles.headerText}>{this.props.userInfo?this.props.userInfo.firstName:'Rohit Bansal'}</Text>
