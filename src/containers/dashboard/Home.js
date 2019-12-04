@@ -81,6 +81,8 @@ class Home extends PureComponent{
         myContext=this;
         let isPunch=this.props.userPunch && Object.entries(this.props.userPunch).length === 0 && this.props.userPunch.constructor === Object;
 
+        console.log("ksssssssss-----------",this.props.userPunch)
+
 
 
         return(
@@ -113,7 +115,7 @@ class Home extends PureComponent{
                         <Card onPress={this.onPunchClick}
                               style={{borderRadius:20,marginTop:20,alignItems:'center',
                                   alignSelf:'center',width:'70%',backgroundColor:!isPunch?'#2b88ff':'#fd2906'}}>
-                            <Text style={{textAlign:'center',marginTop:15,color:'#FFFFFF',fontSize:12,}}>{ShowCurrentDate()}</Text>
+                            <Text style={{fontWeight:'bold',textAlign:'center',marginTop:15,color:'#FFFFFF',fontSize:14,}}>{ShowCurrentDate()}</Text>
 
                             {isPunch &&
                             <Text style={{textAlign:'center',marginTop:25,marginBottom:35,color:'#FFFFFF',fontSize:20,}}>No Time</Text>

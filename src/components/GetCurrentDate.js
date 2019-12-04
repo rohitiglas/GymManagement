@@ -2,8 +2,13 @@
 export const  ShowCurrentDate=()=>{
 
     let  date = new Date().getDate();
-    let month = new Date().getMonth() + 1;
+    // let month = new Date().getMonth() + 1;
     let year = new Date().getFullYear();
+    // let day=new Date().getDay();
+    let days = ['Sun','Mon','Tue','Wed','Thurs','Fri','Sat'];
+    let months = ['Jan','Feb','March','Apr','May','June','July','Aug','Sept','Oct','Nov','Dec'];
+    let day = days[ new Date().getDay() ];
+    let month = months[ new Date().getMonth() + 1 ];
     let monthName='';
     switch (month) {
         case 1: monthName='Jan';
@@ -35,7 +40,7 @@ export const  ShowCurrentDate=()=>{
 
     }
 
-    return (date + ' '+monthName + ' ' + year)
+    return (day+' '+date + ' '+monthName + ' ' + year)
 
 }
 
