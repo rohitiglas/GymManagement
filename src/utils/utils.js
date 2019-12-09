@@ -1,5 +1,4 @@
 export const emailValidator = email => {
-  console.log("lsssssssssssssssssss",email)
   const re = /\S+@\S+\.\S+/;
 
   if (!email || email.length <= 0) return "Email cannot be empty.";

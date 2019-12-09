@@ -8,7 +8,9 @@ import MyTask from "./MyTask";
 import ChangePassword from "./ChangePassword";
 import Loader from "../../components/Loader";
 import Attendance from "./Attendance";
-let myContext=null;
+import MyStatusBar from "../../components/StatusBarColor";
+import MyPlan from "./MyPlan";
+import MyProfile from "./MyProfile";
 
 
 class Home extends PureComponent{
@@ -51,15 +53,18 @@ class Home extends PureComponent{
 
     render()
     {
-        myContext=this;
+
 
 
         return(
 
             <View style={{flex:1}}>
+                <MyStatusBar backgroundColor='#FF5722' barStyle="light-content" />
 
                 <Loader
                     loading={this.state.isLoading} />
+
+
 
 
                 <View style={{height:60,width:'100%',flexDirection:'row',alignItems:'center',backgroundColor:'#FF5722'}}>
@@ -68,11 +73,16 @@ class Home extends PureComponent{
                                style={{marginLeft:15,marginRight:20,width:20,height:20,tintColor:'#FFF'}}/>
                     </TouchableOpacity>
 
-                    <Text  style={{fontSize:20,color:'#FFF',fontWeight:'bold'}}>{this.props.selectedRow?this.props.selectedRow:'Home'}</Text>
+                    <Text
+                        style={{fontSize:20,color:'#FFF',fontWeight:'bold'}}>{this.props.selectedRow?this.props.selectedRow:'Home'}
+                    </Text>
                 </View>
 
                 {this.props.selectedRow==='Home' &&
-                <Attendance onPunchClick={this.onPunchClick} userPunch={this.props.userPunch}/>
+
+                        <Attendance onPunchClick={this.onPunchClick} userPunch={this.props.userPunch}/>
+
+
                 }
                 {this.props.selectedRow==='MyTask' &&
                 <MyTask/>
@@ -80,6 +90,12 @@ class Home extends PureComponent{
 
                 {this.props.selectedRow==='ChangePassword' &&
                 <ChangePassword/>}
+
+                {this.props.selectedRow==='MyPlan' &&
+                <MyPlan  myPlan={this.props.myPlan}/>}
+
+                {this.props.selectedRow==='MyProfile' &&
+                <MyProfile  userInfo={this.props.userInfo}/>}
             </View>
 
         )
@@ -91,10 +107,12 @@ class Home extends PureComponent{
 
 
 const mapStateToProps = (state) => {
+
     return {
         selectedRow:state.login.selectedDrawerRow,
         userInfo:state.login.userInfo,
-        userPunch: state.login.userPunch
+        userPunch: state.login.userPunch,
+        myPlan: state.login.myPlan
     }
 }
 

@@ -52,16 +52,16 @@ class LoginComponent extends Component{
     }
 
     onError = (error) => {
+        console.log("lslslslslls",error)
         this.setState({loading:false})
-        Alert.alert('',data.message);
+        Alert.alert('',error.message);
 
 
 
     }
     _onSignUpPressed =  () => {
-        console.log("skkkkk---------------------------","Called")
+
         const emailError = emailValidator(this.state.email);
-        console.log("KSSSS-------------",emailError)
         const passwordError = passwordValidator(this.state.password);
 
 
@@ -90,7 +90,7 @@ class LoginComponent extends Component{
 
 
 
-                    <Header>Login</Header>
+                    <Header>Gym Management</Header>
 
                     <Loader loading={this.state.loading} />
 

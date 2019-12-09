@@ -1,5 +1,7 @@
 export default {
     login: {
+        myProfile:{},
+        myPlan:{},
         token:'',
         userPunch:{},
         selectedDrawerRow:"Home",

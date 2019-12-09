@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {NavigationActions, StackActions} from 'react-navigation';
-import { Text, View, StyleSheet, ImageBackground,Image,TouchableOpacity,StatusBar } from 'react-native'
+import { Text, View, StyleSheet, ImageBackground,Image,TouchableOpacity,FlatList} from 'react-native'
 
 import {saveToken} from "../utils/storage";
 
@@ -8,9 +8,12 @@ import {connect} from "react-redux";
 
 import {setSelectedDrawerRow} from "../actions/loginActions";
 import Home from "../containers/dashboard/Home";
+import {data} from "../utils/drawerContent";
+
 
 
  class DrawerContent extends Component {
+
 
 
     logoutPress = async () => {
@@ -30,70 +33,59 @@ import Home from "../containers/dashboard/Home";
 
     }
 
-    rowPress =(item) => {
-        this.props.navigation.closeDrawer();
-        this.props.drawerSelectedRow(item);
+    rowPress =async (item) => {
+        if(item==='Logout')
+        {
+            this.logoutPress()
+        }
+        else
+        {
+            this.props.navigation.closeDrawer();
+            this.props.drawerSelectedRow(item);
+        }
+
 
 
     }
 
-    render() {
+     renderSeparator = () => {
+         return (
+             <View style={{marginTop:5,width:'100%',height:1,backgroundColor:'#d3d3d3'}}/>
+         );
+     };
+
+     render() {
         return (
             <View style={styles.container}>
 
                 <View style={styles.headerContainer}>
                     <ImageBackground source={require('../images/header.jpg')} style={{flex: 1,  justifyContent: 'center'}} >
-                        <Text style={styles.headerText}>{this.props.userInfo?this.props.userInfo.firstName:'Rohit Bansal'}</Text>
+                        <Text style={styles.headerText}>{this.props.userInfo?this.props.userInfo.email:'abc@gmail.com'}</Text>
 
                     </ImageBackground>
                 </View>
 
+                <FlatList
+                    data={data}
+                    renderItem={({item}) =>
 
-                <TouchableOpacity  style={styles.screenContainer} onPress={()=>this.rowPress('Home')}>
+                        <TouchableOpacity  style={styles.screenContainer} onPress={()=>this.rowPress(item.name)}>
 
-                    <View style={styles.activeBackgroundColor}>
-                        <Image source={require('../images/home.png')} style={{width:30,height:30}}/>
-                        <Text style={styles.selectedTextStyle }>Home</Text>
-                    </View>
-                    <View style={{marginTop:5,width:'100%',height:1,backgroundColor:'#d3d3d3'}}/>
-
-
-                </TouchableOpacity>
-
-                <TouchableOpacity  style={styles.screenContainer} onPress={()=>this.rowPress('MyTask')}>
-                    <View >
                         <View style={styles.activeBackgroundColor}>
-                            <Image source={require('../images/task.png')} style={{width:30,height:30}}/>
-                            <Text style={styles.selectedTextStyle}>My Task</Text>
+                        <Image source={item.image} style={{width:30,height:30}}/>
+                        <Text style={styles.selectedTextStyle }>{item.name}</Text>
                         </View>
-                        <View style={{marginTop:5,width:'100%',height:1,backgroundColor:'#d3d3d3'}}/>
 
-                    </View>
-                </TouchableOpacity>
 
-                <TouchableOpacity  style={styles.screenContainer} onPress={()=>this.rowPress('ChangePassword')}>
-                    <View >
-                        <View style={styles.activeBackgroundColor}>
-                            <Image source={require('../images/change_password.png')} style={{width:30,height:30}}/>
-                            <Text style={styles.selectedTextStyle }>Change Password</Text>
-                        </View>
-                        <View style={{marginTop:5,width:'100%',height:1,backgroundColor:'#d3d3d3'}}/>
-
-                    </View>
-                </TouchableOpacity>
+                        </TouchableOpacity>
+                    }
+                    ItemSeparatorComponent={this.renderSeparator}
+                />
 
 
 
-                <TouchableOpacity  style={styles.screenContainer} onPress={this.logoutPress}>
-                <View >
-                    <View style={styles.activeBackgroundColor}>
-                        <Image source={require('../images/logout.png')} style={{width:30,height:30}}/>
-                        <Text style={styles.selectedTextStyle }>Logout</Text>
-                    </View>
-                    <View style={{marginTop:5,width:'100%',height:1,backgroundColor:'#d3d3d3'}}/>
 
-                </View>
-                </TouchableOpacity>
+
 
 
 
@@ -104,7 +96,7 @@ import Home from "../containers/dashboard/Home";
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
+
     },
     headerContainer: {
         width:'100%',

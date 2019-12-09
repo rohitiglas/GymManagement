@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    console.log("ksssssssssssssssjjjajChangePassword",state.login)
+
 
 
     return {
