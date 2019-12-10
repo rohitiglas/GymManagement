@@ -3,6 +3,7 @@ export default {
         myProfile:{},
         myPlan:{},
         token:'',
+        myTask:{},
         userPunch:{},
         selectedDrawerRow:"Home",
         cartQuantity:0,

@@ -85,7 +85,7 @@ class Home extends PureComponent{
 
                 }
                 {this.props.selectedRow==='MyTask' &&
-                <MyTask/>
+                <MyTask myTask={this.props.myTask}/>
                 }
 
                 {this.props.selectedRow==='ChangePassword' &&
@@ -108,11 +108,13 @@ class Home extends PureComponent{
 
 const mapStateToProps = (state) => {
 
+
     return {
         selectedRow:state.login.selectedDrawerRow,
         userInfo:state.login.userInfo,
         userPunch: state.login.userPunch,
-        myPlan: state.login.myPlan
+        myPlan: state.login.myPlan,
+        myTask: state.login.myTask,
     }
 }
 

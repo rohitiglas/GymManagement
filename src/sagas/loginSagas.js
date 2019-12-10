@@ -42,6 +42,7 @@ export function* loginApiCall(action) {
 export function* getUserApiCall(action) {
     try {
         const data = yield call(loginApis.getUserApiCall, action.params);
+        console.log('jsjjsjsj----------',data.data)
 
 
         yield put(setUserInfo(data.data.data))

@@ -15,7 +15,7 @@ const loginReducer = (state = appState.login, action) => {
 
 
 
-            let myAttendance={},myPlan={}
+            let myAttendance={},myPlan={},myTask={}
 
             if( action.data && action.data.attendence)
             {
@@ -29,9 +29,14 @@ const loginReducer = (state = appState.login, action) => {
             {
                 myPlan=action.data.plan
             }
+            if( action.data && action.data.exercise)
+            {
+                myTask=action.data.exercise
+            }
 
             return { ...state,
                 userInfo: action.data.user,
+                myTask:myTask,
                 myPlan: myPlan,
                 userPunch: myAttendance,selectedDrawerRow:"Home" }
 
