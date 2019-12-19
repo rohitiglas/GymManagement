@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, AsyncStorage} from 'react-native';
+import {View} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {getToken} from '../../utils/storage';
 import {NavigationActions, StackActions} from 'react-navigation';

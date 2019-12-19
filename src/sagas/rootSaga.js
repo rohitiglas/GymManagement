@@ -1,18 +1,19 @@
-import { all } from 'redux-saga/effects';
+import {all} from 'redux-saga/effects';
 import {
-    watchChangePasswordApiCall,
-    watchUserPunchApiCall,
-    watchGetUserApiCall, watchLoginApiCall,
-    watchFetchUserInfo,} from '../sagas/loginSagas';
+  watchChangePasswordApiCall,
+  watchUserPunchApiCall,
+  watchGetUserApiCall,
+  watchLoginApiCall,
+  watchFetchUserInfo,
+} from '../sagas/loginSagas';
 function* rootSaga() {
-    yield all([
-        watchChangePasswordApiCall(),
-        watchUserPunchApiCall(),
-        watchGetUserApiCall(),
-        watchLoginApiCall(),
+  yield all([
+    watchChangePasswordApiCall(),
+    watchUserPunchApiCall(),
+    watchGetUserApiCall(),
+    watchLoginApiCall(),
 
-        watchFetchUserInfo(),
-
-    ])
+    watchFetchUserInfo(),
+  ]);
 }
-export default rootSaga
+export default rootSaga;

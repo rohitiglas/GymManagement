@@ -1,70 +1,46 @@
 import * as types from '../actions/types';
 import appState from '../constants/initialState';
 
-
 const loginReducer = (state = appState.login, action) => {
+  switch (action.type) {
+    case types.SET_LOGIN_TOKEN:
+      return {...state, token: action.data};
 
+    case types.SET_USER_INFO:
+      let myAttendance = {},
+        myPlan = {},
+        myTask = {};
 
-    switch (action.type) {
+      if (action.data && action.data.attendence) {
+        myAttendance = action.data.attendence;
+      }
+      if (action.data && action.data.plan) {
+        myPlan = action.data.plan;
+      }
+      if (action.data && action.data.plan) {
+        myPlan = action.data.plan;
+      }
+      if (action.data && action.data.exercise) {
+        myTask = action.data.exercise;
+      }
 
-        case types.SET_LOGIN_TOKEN:
-            return { ...state,
-                token: action.data}
+      return {
+        ...state,
+        userInfo: action.data.user,
+        myTask: myTask,
+        myPlan: myPlan,
+        userPunch: myAttendance,
+        selectedDrawerRow: 'Home',
+      };
 
-        case types.SET_USER_INFO:
+    case types.SET_SELECTED_DRAWER_ROW:
+      return {...state, ...{selectedDrawerRow: action.data}};
 
+    case types.SET_USER_PUNCH:
+      return {...state, userPunch: action.data};
 
-
-            let myAttendance={},myPlan={},myTask={}
-
-            if( action.data && action.data.attendence)
-            {
-                myAttendance=action.data.attendence
-            }
-            if( action.data && action.data.plan)
-            {
-                myPlan=action.data.plan
-            }
-            if( action.data && action.data.plan)
-            {
-                myPlan=action.data.plan
-            }
-            if( action.data && action.data.exercise)
-            {
-                myTask=action.data.exercise
-            }
-
-            return { ...state,
-                userInfo: action.data.user,
-                myTask:myTask,
-                myPlan: myPlan,
-                userPunch: myAttendance,selectedDrawerRow:"Home" }
-
-            case types.SET_SELECTED_DRAWER_ROW:
-            return { ...state, ...{ selectedDrawerRow: action.data, } }
-
-
-        case types.SET_USER_PUNCH:
-            return {...state,userPunch:action.data}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        default:return state
-
-
-    }
-
-}
-export default loginReducer
+    default:
+      return state;
+  }
+};
+export default loginReducer;
