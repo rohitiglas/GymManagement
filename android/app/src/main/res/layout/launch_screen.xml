@@ -5,13 +5,11 @@
     android:background="@drawable/background_splash"
     android:orientation="vertical">
 
-    <TextView
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="#FFFFFF"
+    <ImageView
+        android:src="@drawable/gymimage"
         android:layout_centerInParent="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gym Management"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+
         />
 </RelativeLayout>

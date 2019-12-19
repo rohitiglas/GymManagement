@@ -30,12 +30,23 @@ class ChangePassword extends Component{
 
     onSuccess = (data) => {
         this.setState({ loading: false });
+        // Alert.alert('',data.message);
+        // this.props.drawerSelectedRow("Home")
+
+        // const { navigation } = this.props;
+        // const resetAction = StackActions.reset({
+        //     index: 0,
+        //     actions: [
+        //         NavigationActions.navigate({ routeName: 'LoginComponent' }),
+        //     ],
+        // });
+        // navigation.dispatch(resetAction);
 
     }
 
     onError = (error) => {
         this.setState({loading:false})
-        Alert.alert('',data.message);
+        Alert.alert('',"Error occurred");
 
 
 
@@ -107,7 +118,8 @@ const styles = StyleSheet.create({
         color: theme.colors.secondary
     },
     button: {
-        marginTop: 24
+        marginTop: 24,
+        backgroundColor:'#FF5722'
     },
     row: {
         flexDirection: "row",
@@ -120,7 +132,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-    console.log("ksssssssssssssssjjjajChangePassword",state.login)
+
 
 
     return {
