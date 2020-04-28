@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "444199451293",
+    "firebase_url": "https://kiraanabazaar-51887.firebaseio.com",
+    "project_id": "kiraanabazaar-51887",
+    "storage_bucket": "kiraanabazaar-51887.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444199451293:android:0d8b7b10d1c76cc7427274",
+        "android_client_info": {
+          "package_name": "com.adminKiraana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444199451293-gq9m2qg3gcaj48tcurk62s6fel2lp4p4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGxZ8o6YJHzabgNo7ky1QeYaJH0-y9I84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444199451293-gq9m2qg3gcaj48tcurk62s6fel2lp4p4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:444199451293:android:172d786b4ee55965427274",
+        "android_client_info": {
+          "package_name": "com.customerKiraana"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "444199451293-gq9m2qg3gcaj48tcurk62s6fel2lp4p4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGxZ8o6YJHzabgNo7ky1QeYaJH0-y9I84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "444199451293-gq9m2qg3gcaj48tcurk62s6fel2lp4p4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

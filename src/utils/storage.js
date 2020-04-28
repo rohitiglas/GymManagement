@@ -1,5 +1,5 @@
-import { AsyncStorage } from 'react-native';
-const USER_TOKEN = 'USER_TOKEN'
+import {AsyncStorage} from 'react-native';
+const USER_TOKEN = 'USER_TOKEN';
 export const setData = async (key, value) => {
   try {
     await AsyncStorage.setItem(`@${key}:key`, `${value}`);
@@ -9,7 +9,7 @@ export const setData = async (key, value) => {
   }
 };
 
-export const getData = async (key) => {
+export const getData = async key => {
   try {
     const value = await AsyncStorage.getItem(`@${key}:key`);
     if (value !== null) {
@@ -21,7 +21,7 @@ export const getData = async (key) => {
   }
 };
 
-export const saveToken = async (value) => {
+export const saveToken = async value => {
   try {
     await AsyncStorage.setItem(`@${USER_TOKEN}:key`, `${value}`);
     return true;
@@ -33,6 +33,29 @@ export const saveToken = async (value) => {
 export const clearToken = async () => saveToken('');
 
 export const getToken = async () => {
+  try {
+    const value = await AsyncStorage.getItem(`@${USER_TOKEN}:key`);
+    if (value !== null) {
+      return value;
+    }
+    return '';
+  } catch (error) {
+    return '';
+  }
+};
+
+export const saveGroceryToken = async value => {
+  try {
+    await AsyncStorage.setItem(`@${USER_TOKEN}:key`, `${value}`);
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
+export const clearGroceryToken = async () => saveGroceryToken('');
+
+export const getGroceryToken = async () => {
   try {
     const value = await AsyncStorage.getItem(`@${USER_TOKEN}:key`);
     if (value !== null) {

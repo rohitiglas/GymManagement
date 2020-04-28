@@ -1,4 +1,4 @@
-package com.gymmanagement;
+package com.customerKiraana;
 
 import android.content.Intent;
 import android.os.Bundle;
